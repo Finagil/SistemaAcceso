@@ -37,7 +37,7 @@
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>AccesoFinagil</ProductName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>36</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -62,17 +62,9 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.GrFingerXLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AxInterop.GrFingerXLib.dll</HintPath>
-    </Reference>
     <Reference Include="CambiaPassCaducado, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Visual Studio 2008\Projects\CambiaPassCaducado\CambiaPassCaducado\bin\Debug\CambiaPassCaducado.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.GrFingerXLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Interop.GrFingerXLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -102,12 +94,6 @@
       <DependentUpon>FrmActualizaPass.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmActualizaPass.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLoginEAR.designer.vb">
-      <DependentUpon>frmLoginEAR.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmLoginEAR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLogin.Designer.vb">
@@ -150,15 +136,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Util.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmActualizaPass.resx">
       <DependentUpon>FrmActualizaPass.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLoginEAR.resx">
-      <DependentUpon>frmLoginEAR.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <SubType>Designer</SubType>

