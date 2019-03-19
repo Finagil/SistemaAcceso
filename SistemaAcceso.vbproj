@@ -12,7 +12,7 @@
     <AssemblyName>SistemaAcceso</AssemblyName>
     <MyType>WindowsForms</MyType>
     <ApplicationIcon>Accesos.ico</ApplicationIcon>
-    <ManifestCertificateThumbprint>8FD4F3530B43D9F5C0EB91E67730BFD6347390FC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FAEAD81A0BF50CCC5FD7E73B5838C6653A025470</ManifestCertificateThumbprint>
     <ManifestKeyFile>SistemaAcceso_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
@@ -37,7 +37,7 @@
     <MapFileExtensions>false</MapFileExtensions>
     <ProductName>AccesoFinagil</ProductName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationRevision>37</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

