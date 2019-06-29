@@ -21,37 +21,34 @@ Partial Class FrmSistema
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmSistema))
-        Me.LblSeguridad = New System.Windows.Forms.Label()
+        Me.LblTesoreria = New System.Windows.Forms.Label()
         Me.Salida_imagen2 = New System.Windows.Forms.PictureBox()
         Me.Salida_imagen3 = New System.Windows.Forms.PictureBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.lblFactor = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.lblArrendamiento = New System.Windows.Forms.Label()
-        Me.lblTesoreria = New System.Windows.Forms.Label()
         Me.LblCredito = New System.Windows.Forms.Label()
-        Me.LblCatalogos = New System.Windows.Forms.Label()
-        Me.LblPromocion = New System.Windows.Forms.Label()
-        Me.LblRiesgo = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.LblSeguridad = New System.Windows.Forms.Label()
         CType(Me.Salida_imagen2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Salida_imagen3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'LblSeguridad
+        'LblTesoreria
         '
-        Me.LblSeguridad.AutoSize = True
-        Me.LblSeguridad.BackColor = System.Drawing.Color.Transparent
-        Me.LblSeguridad.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LblSeguridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
-        Me.LblSeguridad.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LblSeguridad.Location = New System.Drawing.Point(12, 465)
-        Me.LblSeguridad.Name = "LblSeguridad"
-        Me.LblSeguridad.Size = New System.Drawing.Size(81, 25)
-        Me.LblSeguridad.TabIndex = 7
-        Me.LblSeguridad.Text = "Control"
+        Me.LblTesoreria.AutoSize = True
+        Me.LblTesoreria.BackColor = System.Drawing.Color.Transparent
+        Me.LblTesoreria.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LblTesoreria.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
+        Me.LblTesoreria.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LblTesoreria.Location = New System.Drawing.Point(45, 455)
+        Me.LblTesoreria.Name = "LblTesoreria"
+        Me.LblTesoreria.Size = New System.Drawing.Size(103, 25)
+        Me.LblTesoreria.TabIndex = 7
+        Me.LblTesoreria.Text = "Tesorería"
+        Me.LblTesoreria.Visible = False
         '
         'Salida_imagen2
         '
@@ -87,7 +84,7 @@ Partial Class FrmSistema
         Me.lblFactor.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblFactor.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.lblFactor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblFactor.Location = New System.Drawing.Point(12, 403)
+        Me.lblFactor.Location = New System.Drawing.Point(45, 389)
         Me.lblFactor.Name = "lblFactor"
         Me.lblFactor.Size = New System.Drawing.Size(102, 25)
         Me.lblFactor.TabIndex = 7
@@ -105,34 +102,6 @@ Partial Class FrmSistema
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Visible = False
         '
-        'lblArrendamiento
-        '
-        Me.lblArrendamiento.AutoSize = True
-        Me.lblArrendamiento.BackColor = System.Drawing.Color.Transparent
-        Me.lblArrendamiento.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblArrendamiento.Font = New System.Drawing.Font("Cooper Black", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblArrendamiento.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblArrendamiento.Location = New System.Drawing.Point(590, 453)
-        Me.lblArrendamiento.Name = "lblArrendamiento"
-        Me.lblArrendamiento.Size = New System.Drawing.Size(188, 24)
-        Me.lblArrendamiento.TabIndex = 7
-        Me.lblArrendamiento.Text = "Arrendamiento"
-        Me.lblArrendamiento.Visible = False
-        '
-        'lblTesoreria
-        '
-        Me.lblTesoreria.AutoSize = True
-        Me.lblTesoreria.BackColor = System.Drawing.Color.Transparent
-        Me.lblTesoreria.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblTesoreria.Font = New System.Drawing.Font("Cooper Black", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTesoreria.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblTesoreria.Location = New System.Drawing.Point(590, 429)
-        Me.lblTesoreria.Name = "lblTesoreria"
-        Me.lblTesoreria.Size = New System.Drawing.Size(120, 24)
-        Me.lblTesoreria.TabIndex = 12
-        Me.lblTesoreria.Text = "Tesoreria"
-        Me.lblTesoreria.Visible = False
-        '
         'LblCredito
         '
         Me.LblCredito.AutoSize = True
@@ -140,51 +109,12 @@ Partial Class FrmSistema
         Me.LblCredito.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LblCredito.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.LblCredito.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LblCredito.Location = New System.Drawing.Point(12, 434)
+        Me.LblCredito.Location = New System.Drawing.Point(45, 422)
         Me.LblCredito.Name = "LblCredito"
         Me.LblCredito.Size = New System.Drawing.Size(113, 25)
         Me.LblCredito.TabIndex = 13
         Me.LblCredito.Text = "Financiera"
-        '
-        'LblCatalogos
-        '
-        Me.LblCatalogos.AutoSize = True
-        Me.LblCatalogos.BackColor = System.Drawing.Color.Transparent
-        Me.LblCatalogos.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LblCatalogos.Font = New System.Drawing.Font("Cooper Black", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblCatalogos.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblCatalogos.Location = New System.Drawing.Point(449, 381)
-        Me.LblCatalogos.Name = "LblCatalogos"
-        Me.LblCatalogos.Size = New System.Drawing.Size(123, 24)
-        Me.LblCatalogos.TabIndex = 14
-        Me.LblCatalogos.Text = "Catalogos"
-        '
-        'LblPromocion
-        '
-        Me.LblPromocion.AutoSize = True
-        Me.LblPromocion.BackColor = System.Drawing.Color.Transparent
-        Me.LblPromocion.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LblPromocion.Font = New System.Drawing.Font("Cooper Black", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblPromocion.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblPromocion.Location = New System.Drawing.Point(449, 405)
-        Me.LblPromocion.Name = "LblPromocion"
-        Me.LblPromocion.Size = New System.Drawing.Size(135, 24)
-        Me.LblPromocion.TabIndex = 15
-        Me.LblPromocion.Text = "Promoción"
-        Me.LblPromocion.Visible = False
-        '
-        'LblRiesgo
-        '
-        Me.LblRiesgo.AutoSize = True
-        Me.LblRiesgo.BackColor = System.Drawing.Color.Transparent
-        Me.LblRiesgo.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LblRiesgo.Font = New System.Drawing.Font("Cooper Black", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblRiesgo.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LblRiesgo.Location = New System.Drawing.Point(590, 405)
-        Me.LblRiesgo.Name = "LblRiesgo"
-        Me.LblRiesgo.Size = New System.Drawing.Size(183, 24)
-        Me.LblRiesgo.TabIndex = 16
-        Me.LblRiesgo.Text = "Analisis Riesgo"
+        Me.LblCredito.Visible = False
         '
         'Label1
         '
@@ -199,6 +129,20 @@ Partial Class FrmSistema
         Me.Label1.TabIndex = 17
         Me.Label1.Text = "..."
         '
+        'LblSeguridad
+        '
+        Me.LblSeguridad.AutoSize = True
+        Me.LblSeguridad.BackColor = System.Drawing.Color.Transparent
+        Me.LblSeguridad.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LblSeguridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
+        Me.LblSeguridad.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LblSeguridad.Location = New System.Drawing.Point(45, 488)
+        Me.LblSeguridad.Name = "LblSeguridad"
+        Me.LblSeguridad.Size = New System.Drawing.Size(110, 25)
+        Me.LblSeguridad.TabIndex = 18
+        Me.LblSeguridad.Text = "Seguridad"
+        Me.LblSeguridad.Visible = False
+        '
         'FrmSistema
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -207,18 +151,14 @@ Partial Class FrmSistema
         Me.BackgroundImage = Global.SistemaAcceso.My.Resources.Resources.LOGO
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(802, 584)
+        Me.Controls.Add(Me.LblSeguridad)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.LblRiesgo)
-        Me.Controls.Add(Me.LblPromocion)
-        Me.Controls.Add(Me.LblCatalogos)
         Me.Controls.Add(Me.LblCredito)
-        Me.Controls.Add(Me.lblTesoreria)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Salida_imagen3)
-        Me.Controls.Add(Me.lblArrendamiento)
         Me.Controls.Add(Me.lblFactor)
         Me.Controls.Add(Me.Salida_imagen2)
-        Me.Controls.Add(Me.LblSeguridad)
+        Me.Controls.Add(Me.LblTesoreria)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmSistema"
@@ -231,18 +171,14 @@ Partial Class FrmSistema
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents LblSeguridad As System.Windows.Forms.Label
+    Friend WithEvents LblTesoreria As System.Windows.Forms.Label
     Friend WithEvents Salida_imagen2 As System.Windows.Forms.PictureBox
     Friend WithEvents Salida_imagen3 As System.Windows.Forms.PictureBox
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents lblFactor As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents lblArrendamiento As System.Windows.Forms.Label
-    Friend WithEvents lblTesoreria As System.Windows.Forms.Label
     Friend WithEvents LblCredito As System.Windows.Forms.Label
-    Friend WithEvents LblCatalogos As System.Windows.Forms.Label
-    Friend WithEvents LblPromocion As System.Windows.Forms.Label
-    Friend WithEvents LblRiesgo As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents LblSeguridad As Label
 End Class
