@@ -20,25 +20,25 @@ Partial Class frmModulos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmModulos))
-        Me.lblModulo_1 = New System.Windows.Forms.Label
-        Me.Salida_imagen2 = New System.Windows.Forms.PictureBox
-        Me.Salida_imagen = New System.Windows.Forms.PictureBox
-        Me.Salida_imagen3 = New System.Windows.Forms.PictureBox
-        Me.lblModulo_0 = New System.Windows.Forms.Label
-        Me.lblModulo_2 = New System.Windows.Forms.Label
-        Me.lblModulo_3 = New System.Windows.Forms.Label
-        Me.lblModulo_4 = New System.Windows.Forms.Label
-        Me.lblModulo_5 = New System.Windows.Forms.Label
-        Me.lblModulo_6 = New System.Windows.Forms.Label
-        Me.lblModulo_7 = New System.Windows.Forms.Label
-        Me.lblModulo_8 = New System.Windows.Forms.Label
-        Me.lblModulo_9 = New System.Windows.Forms.Label
-        Me.lblModulo_10 = New System.Windows.Forms.Label
-        Me.lblModulo_11 = New System.Windows.Forms.Label
-        Me.lblModulos_15 = New System.Windows.Forms.Label
-        Me.lblModulos_13 = New System.Windows.Forms.Label
-        Me.lblModulos_14 = New System.Windows.Forms.Label
-        Me.lblModulos_12 = New System.Windows.Forms.Label
+        Me.lblModulo_1 = New System.Windows.Forms.Label()
+        Me.Salida_imagen2 = New System.Windows.Forms.PictureBox()
+        Me.Salida_imagen = New System.Windows.Forms.PictureBox()
+        Me.Salida_imagen3 = New System.Windows.Forms.PictureBox()
+        Me.lblModulo_0 = New System.Windows.Forms.Label()
+        Me.lblModulo_2 = New System.Windows.Forms.Label()
+        Me.lblModulo_3 = New System.Windows.Forms.Label()
+        Me.lblModulo_4 = New System.Windows.Forms.Label()
+        Me.lblModulo_5 = New System.Windows.Forms.Label()
+        Me.lblModulo_6 = New System.Windows.Forms.Label()
+        Me.lblModulo_7 = New System.Windows.Forms.Label()
+        Me.lblModulo_8 = New System.Windows.Forms.Label()
+        Me.lblModulo_9 = New System.Windows.Forms.Label()
+        Me.lblModulo_10 = New System.Windows.Forms.Label()
+        Me.lblModulo_11 = New System.Windows.Forms.Label()
+        Me.lblModulos_15 = New System.Windows.Forms.Label()
+        Me.lblModulos_13 = New System.Windows.Forms.Label()
+        Me.lblModulos_14 = New System.Windows.Forms.Label()
+        Me.lblModulos_12 = New System.Windows.Forms.Label()
         CType(Me.Salida_imagen2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Salida_imagen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Salida_imagen3, System.ComponentModel.ISupportInitialize).BeginInit()

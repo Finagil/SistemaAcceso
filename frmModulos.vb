@@ -97,7 +97,16 @@ Public Class frmModulos
                     Case Is = "CATALOGOS", "ADQUISICION", "COBRANZA", "TESORERIA.", "TESORERIA", "CREDITO", "REPORTES", "CONTABILIDAD", "FONDEO"
                         Process.Start(x, "FACTOR.TXT ; 15 ")
                     Case Else
-                        Process.Start(x)
+                        Dim pwd As New Security.SecureString()
+                        pwd.AppendChar("s")
+                        pwd.AppendChar("i")
+                        pwd.AppendChar("s")
+                        pwd.AppendChar("t")
+                        pwd.AppendChar("e")
+                        pwd.AppendChar("m")
+                        pwd.AppendChar("a")
+                        pwd.AppendChar("s")
+                        Process.Start(x, "sistemas", pwd, "AGIL")
                 End Select
             Else
                 Process.Start(x, "Finagil")
@@ -128,6 +137,10 @@ Public Class frmModulos
     End Sub
 
     Private Sub lblModulos_15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblModulos_15.Click
+
+    End Sub
+
+    Private Sub lblModulo_0_Click(sender As Object, e As EventArgs) Handles lblModulo_0.Click
 
     End Sub
 End Class
