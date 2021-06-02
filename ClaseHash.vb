@@ -7,7 +7,7 @@ Public Class ClaseHash
     Dim y As System.Security.Cryptography.MD5
     ' Hash an input string and return the hash as
     ' a 32 character hexadecimal string.
-    Function getMd5Hash(ByVal input As String) As String
+    Public Function getMd5Hash(ByVal input As String) As String
         ' Create a new instance of the MD5 object.
         Dim md5Hasher As MD5 = MD5.Create()
         ' Convert the input string to a byte array and compute the hash.
@@ -25,7 +25,7 @@ Public Class ClaseHash
         Return sBuilder.ToString()
     End Function
     ' Verify a hash against a string.
-    Function verifyMd5Hash(ByVal input As String, ByVal hash As String) As Boolean
+    Public Function verifyMd5Hash(ByVal input As String, ByVal hash As String) As Boolean
         ' Hash the input.
         Dim hashOfInput As String = getMd5Hash(input)
         ' Create a StringComparer an comare the hashes.

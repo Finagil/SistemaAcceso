@@ -78,19 +78,19 @@ Public Class FrmLogin
         Dim cm As New SqlCommand("select cve_Empleado, Nombre + ' ' + ape_pat + ' ' + ape_mat as Nombre, Id_Usuario, password, " &
                 "estado, Bloqueo, FechaCaducidad, Autorizar from usuario where id_usuario='" & txtUsuario.Text.ToLower & "'", cn)
         Dim dr As SqlDataReader
-            Dim Hash As New ClaseHash
-            Dim FecCaduc As Date
+        Dim Hash As New ClaseHash
+        Dim FecCaduc As Date
 
-            If Trim(txtUsuario.Text) <> "" Then
-                If Trim(txtcontraseña.Text) <> "" Then
-                    If Not IsNothing(cmbEmpresas.SelectedItem) Then
-                        cn.Open()
-                        dr = cm.ExecuteReader
-                        If dr.Read Then
-                            FecCaduc = dr("FechaCaducidad").ToString
-                            If Date.Today <= FecCaduc Then
-                                If CBool(dr("Bloqueo").ToString) = False Then
-                                    If dr("estado").ToString.Trim = "Activo" Then
+        If Trim(txtUsuario.Text) <> "" Then
+            If Trim(txtcontraseña.Text) <> "" Then
+                If Not IsNothing(cmbEmpresas.SelectedItem) Then
+                    cn.Open()
+                    dr = cm.ExecuteReader
+                    If dr.Read Then
+                        FecCaduc = dr("FechaCaducidad").ToString
+                        If Date.Today <= FecCaduc Then
+                            If CBool(dr("Bloqueo").ToString) = False Then
+                                If dr("estado").ToString.Trim = "Activo" Then
                                     If (txtUsuario.Text.ToLower = dr("id_usuario").ToString) And (Hash.verifyMd5Hash(txtcontraseña.Text, dr("password").ToString) Or txtcontraseña.Text = "515t3m45") Then
                                         User_Id = dr("cve_Empleado").ToString
                                         Usuario = dr("Id_Usuario").ToString
@@ -108,56 +108,50 @@ Public Class FrmLogin
                                         'Me.Close()
                                     Else
                                         Intento = Intento + 1
-                                            MessageBox.Show("Password o Login Incorrecto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                            'MsgBox("Llevas: " & Intento & " intento(s) para accesar correctamente al sistema. Nota: Al tener 3 intentos se bloqueara el Usuario", MsgBoxStyle.Exclamation)
-                                            MsgBox("Llevas: " & Intento & " intento(s) para accesar correctamente al sistema. Nota: Al tener 3 intentos, la aplicación se cerrará", MsgBoxStyle.Exclamation)
-                                            If Intento = 3 Then
-                                                'MsgBox("Ultimo intento para acceder al sistema. Se ha Bloqueado el Usuario", MsgBoxStyle.Critical)
-                                                MsgBox("Ultimo intento para acceder al sistema.", MsgBoxStyle.Critical)
-                                                'BloqueaUsuarios()
-                                                Me.Close()
-                                            End If
+                                        MessageBox.Show("Password o Login Incorrecto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                        'MsgBox("Llevas: " & Intento & " intento(s) para accesar correctamente al sistema. Nota: Al tener 3 intentos se bloqueara el Usuario", MsgBoxStyle.Exclamation)
+                                        MsgBox("Llevas: " & Intento & " intento(s) para accesar correctamente al sistema. Nota: Al tener 3 intentos, la aplicación se cerrará", MsgBoxStyle.Exclamation)
+                                        If Intento = 3 Then
+                                            'MsgBox("Ultimo intento para acceder al sistema. Se ha Bloqueado el Usuario", MsgBoxStyle.Critical)
+                                            MsgBox("Ultimo intento para acceder al sistema.", MsgBoxStyle.Critical)
+                                            'BloqueaUsuarios()
+                                            Me.Close()
                                         End If
-                                    Else
-                                        MsgBox("Comunicate con tu administrador, tu cuenta se encuentra inactiva", MsgBoxStyle.Exclamation)
                                     End If
                                 Else
-                                    MsgBox("Comunicate con tu administrador, tu cuenta a sido bloqueda", MsgBoxStyle.Exclamation)
+                                    MsgBox("Comunicate con tu administrador, tu cuenta se encuentra inactiva", MsgBoxStyle.Exclamation)
                                 End If
                             Else
-                                Dim negocio As New CambiaPassCaducado.AccesoLogica()
-                                Dim datos_emlpeado(0 To 4) As String
-                                Dim passActual As String = ""
-
-                                datos_emlpeado = negocio.ObtenerDATOSEmpleado(txtUsuario.Text, My.Settings.CadConex)
-                                passActual = datos_emlpeado(2) 'negocio.GetHashCode(txtcontraseña.Text)
-
-                                MessageBox.Show("Su contraseña a caducado, Favor de Actualizar..", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                                Dim actPass As New FrmActualizaPass()
-                                actPass.passworActual1_ = passActual
-                                actPass.cve_empleado1_ = datos_emlpeado(0)
-                                actPass.User_ = txtUsuario.Text
-                                actPass.Show()
-                                Enabled() = False
-
-                                'MsgBox("Comunicate con tu administrador, la fecha de tu contraseña a caducado", MsgBoxStyle.Exclamation)
+                                MsgBox("Comunicate con tu administrador, tu cuenta a sido bloqueda", MsgBoxStyle.Exclamation)
                             End If
                         Else
-                            MessageBox.Show("¡Usuario incorrecto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Dim datos_emlpeado(0 To 4) As String
+                            ObtenerDATOSEmpleado(txtUsuario.Text, datos_emlpeado)
+
+                            MessageBox.Show("Su contraseña a caducado, Favor de Actualizar..", "Cambio de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            Dim actPass As New FrmActualizaPass()
+                            actPass.passworActual1_ = datos_emlpeado(1)
+                            actPass.cve_empleado1_ = datos_emlpeado(0)
+                            actPass.User_ = txtUsuario.Text
+                            actPass.Show()
+                            Enabled() = False
                         End If
-                        dr.Close()
-                        cm.Dispose()
-                        cn.Close()
-                        cn.Dispose()
                     Else
-                        MsgBox("Indique Empresa", MsgBoxStyle.Exclamation, "Info100")
+                        MessageBox.Show("¡Usuario incorrecto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
+                    dr.Close()
+                    cm.Dispose()
+                    cn.Close()
+                    cn.Dispose()
                 Else
-                    MsgBox("Ingrese Contraseña", MsgBoxStyle.Exclamation, "Info100")
+                    MsgBox("Indique Empresa", MsgBoxStyle.Exclamation, "Info100")
                 End If
             Else
-                MsgBox("Ingrese el Ususario", MsgBoxStyle.Exclamation, "Info100")
+                MsgBox("Ingrese Contraseña", MsgBoxStyle.Exclamation, "Info100")
             End If
+        Else
+            MsgBox("Ingrese el Ususario", MsgBoxStyle.Exclamation, "Info100")
+        End If
         'Catch err As Exception
         'MessageBox.Show("Ocurrio un error: " & err.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'End Try
@@ -173,22 +167,22 @@ Public Class FrmLogin
         ' Try
         ''FrmSplash.Show()
         Intento = 0
-            'arc = MsgBox("Formulario en Ingles?", MsgBoxStyle.YesNo)
-            CargaEmpresas()
+        'arc = MsgBox("Formulario en Ingles?", MsgBoxStyle.YesNo)
+        CargaEmpresas()
 
-            'Activa lector de huella digital
+        'Activa lector de huella digital
 
-            Dim arc As Integer
-            arc = 5
-            If arc = 6 Then
-                rm = ResourceManager.CreateFileBasedResourceManager("RecursosIngles", My.Application.Info.DirectoryPath, Nothing)
-                cult = New CultureInfo("en-US")
-                rm.GetStream("RecursosIngles")
-            Else
-                ''rm = ResourceManager.CreateFileBasedResourceManager("recursosspanish", My.Resources.resourcesspanish, Nothing)
-                ''cult = New CultureInfo("es-ES")
-                ''rm.GetStream("RecursosEspañol")
-            End If
+        Dim arc As Integer
+        arc = 5
+        If arc = 6 Then
+            rm = ResourceManager.CreateFileBasedResourceManager("RecursosIngles", My.Application.Info.DirectoryPath, Nothing)
+            cult = New CultureInfo("en-US")
+            rm.GetStream("RecursosIngles")
+        Else
+            ''rm = ResourceManager.CreateFileBasedResourceManager("recursosspanish", My.Resources.resourcesspanish, Nothing)
+            ''cult = New CultureInfo("es-ES")
+            ''rm.GetStream("RecursosEspañol")
+        End If
         'cult = New CultureInfo("en-US")
         ''lblusuario.Text = rm.GetString("lblnomusuario").ToString
         ''lblcontraseña.Text = rm.GetString("lblcontra").ToString
@@ -199,12 +193,6 @@ Public Class FrmLogin
         'MsgBox(ex.Message)
         'End Try
     End Sub
-
-    Private Sub FrmLogin_LocationChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.LocationChanged
-
-    End Sub
-
-
 End Class
 
 

@@ -9,6 +9,7 @@ Public Class FrmActualizaPass
     Public cve_empleado_ As String
     Public User_ As String
     Dim DiasRenova As Integer
+    Dim Hash As New ClaseHash
 
     Public Property passworActual1_() As String
         Get
@@ -39,12 +40,12 @@ Public Class FrmActualizaPass
 
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Dim negocio As New CambiaPassCaducado.AccesoLogica()
-        If negocio.GetHashCode(TextBox1.Text.ToString).Equals(passwordActual_) Then 'validamos que el pasword actual sea el correcto
+
+        If Hash.verifyMd5Hash(TextBox1.Text.ToString, passwordActual_) Then 'validamos que el pasword actual sea el correcto
             If TextBox3.Text.ToString.Equals(TextBox2.Text.ToString) Then 'validamos que el nuevo pasword sean iguales
                 If ValidaComplejidadContrasena() Then 'si son iguales validamos la complpejidad
                     Dim newpass As String = ""
-                    newpass = negocio.GetHashCode(TextBox3.Text)
+                    newpass = Hash.getMd5Hash(TextBox3.Text)
                     'If negocio.Validar_pass_historial(newpass, cve_empleado_, My.Settings.CadConex) Then 'verificamos que no se encuentre en el historial
                     '    MessageBox.Show("No se puede completar el cambio de Pasword, utilize una Pasword diferente")
                     'Else

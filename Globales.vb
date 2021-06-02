@@ -22,11 +22,24 @@ Module Globales
     Public Sub ActualizaPass(id_empleado As String, PassHash As String, DiasCaduca As Integer, User As String)
         Dim cn As New System.Data.SqlClient.SqlConnection(My.Settings.CadConex)
         Dim fecha As Date = Date.Now.AddDays(DiasCaduca)
-        Dim cm As New System.Data.SqlClient.SqlCommand("update usuario set password = '" & PassHash & "', fechaCaducidad = '" & fecha.ToShortDateString & "' where cve_empleado = '" & id_empleado & "'", cn)
-        Dim cm1 As New System.Data.SqlClient.SqlCommand("ALTER LOGIN " & User & " WITH PASSWORD = '" & PassHash & "';", cn)
+        Dim cm As New System.Data.SqlClient.SqlCommand("update usuario set password = '" & PassHash & "', fechaCaducidad = '" & fecha.ToString("MM/dd/yyyy") & "' where cve_empleado = '" & id_empleado & "'", cn)
+        'Dim cm1 As New System.Data.SqlClient.SqlCommand("ALTER LOGIN " & User & " WITH PASSWORD = '" & PassHash & "';", cn)
         cn.Open()
         cm.ExecuteNonQuery()
-        cm1.ExecuteNonQuery()
+        'cm1.ExecuteNonQuery()
+        cn.Close()
+    End Sub
+
+    Public Sub ObtenerDATOSEmpleado(usuario As String, ByRef datos_emlpeado() As String)
+        Dim cn As New System.Data.SqlClient.SqlConnection(My.Settings.CadConex)
+        Dim cm As New System.Data.SqlClient.SqlCommand("Select cve_empleado, password from USUARIO where id_usuario = '" & usuario & "'", cn)
+        cn.Open()
+        Dim dt As SqlClient.SqlDataReader
+        dt = cm.ExecuteReader()
+        While (dt.Read())
+            datos_emlpeado(0) = dt(0)
+            datos_emlpeado(1) = dt(1)
+        End While
         cn.Close()
     End Sub
 
